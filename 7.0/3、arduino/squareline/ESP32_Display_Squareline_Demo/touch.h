@@ -5,16 +5,21 @@
  * XPT2046: https://github.com/PaulStoffregen/XPT2046_Touchscreen.git
  ******************************************************************************/
 
+/********************************************
+ * if you use Elecrow ESP32 Display 4.3inch board ,please uncomment XPT2046(Line 36 to Line 46)
+ * if you use Elecrow ESP32 Display 5.0 or 7.0inch board ,please uncomment GT911(Line 25 to Line 34)
+ */
+
 /* uncomment for FT6X36 */
 // #define TOUCH_FT6X36
-// #define TOUCH_FT6X36_SCL 19
-// #define TOUCH_FT6X36_SDA 18
-// #define TOUCH_FT6X36_INT 39
+// #define TOUCH_FT6X36_SCL 38//19
+// #define TOUCH_FT6X36_SDA 37//18
+// #define TOUCH_FT6X36_INT 4//39
 // #define TOUCH_SWAP_XY
-// #define TOUCH_MAP_X1 480
+// #define TOUCH_MAP_X1 800
 // #define TOUCH_MAP_X2 0
 // #define TOUCH_MAP_Y1 0
-// #define TOUCH_MAP_Y2 320
+// #define TOUCH_MAP_Y2 480
 
 /* uncomment for GT911 */
  #define TOUCH_GT911
@@ -34,12 +39,12 @@
 // #define TOUCH_XPT2046_MISO 13
 // #define TOUCH_XPT2046_MOSI 11
 // #define TOUCH_XPT2046_CS 38
-// #define TOUCH_XPT2046_INT 18
+// #define TOUCH_XPT2046_INT 36
 // #define TOUCH_XPT2046_ROTATION 0
-// #define TOUCH_MAP_X1 4000//4000
-// #define TOUCH_MAP_X2 100 //100
-// #define TOUCH_MAP_Y1 100//100
-// #define TOUCH_MAP_Y2 4000//4000
+// #define TOUCH_MAP_X1 4000
+// #define TOUCH_MAP_X2 100
+// #define TOUCH_MAP_Y1 100
+// #define TOUCH_MAP_Y2 4000
 
 int touch_last_x = 0, touch_last_y = 0;
 
@@ -58,9 +63,6 @@ TAMC_GT911 ts = TAMC_GT911(TOUCH_GT911_SDA, TOUCH_GT911_SCL, TOUCH_GT911_INT, TO
 #include <XPT2046_Touchscreen.h>
 #include <SPI.h>
 XPT2046_Touchscreen ts(TOUCH_XPT2046_CS, TOUCH_XPT2046_INT);
-//T2046_Touchscreen ts(TOUCH_XPT2046_CS);  // Param 2 - NULL - No interrupts 
-
-
 
 #endif
 
