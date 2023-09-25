@@ -39,7 +39,7 @@ void touch_calibrate()//屏幕校准
   //校准
   Serial.println("按指示触摸角落");
 
-  lv_timer_handler();
+  //lv_timer_handler();
   lcd.calibrateTouch(calData, TFT_MAGENTA, TFT_BLACK, 15);
   Serial.println("calibrateTouch(calData, TFT_MAGENTA, TFT_BLACK, 15)");
   Serial.println(); Serial.println();
