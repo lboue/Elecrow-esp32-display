@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <SPI.h>
 
-#define USE_UI    //if you want to use the ui export from Squareline or GUIGuider, please do not annotate this line.
+#define USE_UI    //if you want to use the ui export from Squareline, please do not annotate this line.
 
 #if defined USE_UI
 #include <lvgl.h>
