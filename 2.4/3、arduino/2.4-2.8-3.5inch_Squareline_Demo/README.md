@@ -16,14 +16,14 @@ And make sure that the 'User_Setup.h' file of the TFT_eSPI library is already co
 
 Or you can find the 'User_Setup.h' file from the 'User_Setup' floder.
 
-![](C:\Users\N\AppData\Roaming\marktext\images\2023-09-27-15-59-22-image.png)
+![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/2.png?raw=true)
 
 You need to copy the 'User_Setup.h' file according the board you're using to the TFT_eSPI library directory, and then, rename it to 'User_Setup.h'
 
 If you already have a 'User_Setup.h' file in the TFT_eSPI library directory, replace it.
 
-![](C:\Users\N\AppData\Roaming\marktext\images\2023-09-27-16-01-22-image.png)
+![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/3.png?raw=true)
 
-![](C:\Users\N\AppData\Roaming\marktext\images\2023-09-27-16-03-26-image.png)
+![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/4.png?raw=true)
 
-![](C:\Users\N\AppData\Roaming\marktext\images\2023-09-27-16-04-16-image.png)
+![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/6.png?raw=true)
