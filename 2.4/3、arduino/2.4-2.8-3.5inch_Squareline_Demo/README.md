@@ -6,7 +6,7 @@ video link:
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-![](C:\Users\N\AppData\Roaming\marktext\images\2023-09-27-15-20-34-image.png)
+![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/2023-09-27-15-20-34-image.png)
 
 Please notice the tips inside the demo code,that is very important.
 
