@@ -26,4 +26,4 @@ If you already have a 'User_Setup.h' file in the TFT_eSPI library directory, rep
 
 ![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/4.png?raw=true)
 
-![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/6.png?raw=true)
+![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/5.png?raw=true)
