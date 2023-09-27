@@ -3,7 +3,7 @@
 #include <SPI.h>
 
 #define USE_UI          //if you want to use the ui export from Squareline ,pleease define USE_UI.
-#define Display_24        //acording to the board you using ,if you using the ESP32 Display 3.5inch board, please define 'Display_35'.if using 2.4inch board,please define 'Display_24'.
+#define Display_24        //according to the board you using ,if you using the ESP32 Display 3.5inch board, please define 'Display_35'.if using 2.4inch board,please define 'Display_24'.
 
 #ifdef USE_UI
 #include <lvgl.h>
