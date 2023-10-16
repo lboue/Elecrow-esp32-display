@@ -17,7 +17,7 @@ Audio audio;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin( 9600 ); /*初始化串口*/
+  Serial.begin( 9600 ); /*Serial Port Initializing */
   pinMode(SD_CS, OUTPUT);      digitalWrite(SD_CS, HIGH);
   SPI.begin(SD_SCK, SD_MISO, SD_MOSI);
   SPI.setFrequency(1000000);
@@ -30,5 +30,5 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   audio.loop();
-  //audio.stopSong();//关闭
+  //audio.stopSong();
 }

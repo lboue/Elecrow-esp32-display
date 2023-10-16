@@ -15,24 +15,24 @@
 Ticker ticker1;
 #include "WiFiMulti.h"
 WiFiMulti wifiMulti;
-#include "BLEDevice.h"              //BLE驱动库
-#include "BLEServer.h"              //BLE蓝牙服务器库
-#include "BLEUtils.h"               //BLE实用程序库
-#include "BLE2902.h"                //特征添加描述符库
-#include <BLECharacteristic.h>      //BLE特征函数库
+#include "BLEDevice.h"              //BLE Driver Library
+#include "BLEServer.h"              //BLE Bluetooth Server Library
+#include "BLEUtils.h"               //BLE Utility Library
+#include "BLE2902.h"                //Feature Addition Descriptor Library
+#include <BLECharacteristic.h>      //BLE Feature Function Library
 BLEAdvertising* pAdvertising = NULL;
 BLEServer* pServer = NULL;
 BLEService *pService = NULL;
 BLECharacteristic* pCharacteristic = NULL;
-#define bleServerName "Wizee-Series-4.3"  //BLE服务器的名称
-#define SERVICE_UUID "6479571c-2e6d-4b34-abe9-c35116712345"  //服务的UUID
+#define bleServerName "Wizee-Series-4.3"  //Name of the BLE server
+#define SERVICE_UUID "6479571c-2e6d-4b34-abe9-c35116712345"  //UUID of the service
 #define CHARACTERISTIC_UUID "826f072d-f87c-4ae6-a416-6ffdcaa02d73"
 
 #define SERIAL_BAUD 9600
-HardwareSerial cardSerial(1);//声明串口1
+HardwareSerial cardSerial(1);//Declare serial port 1
 
-const char *ssid = "elecrow888"; //你的网络名称
-const char *password = "elecrow2014"; //你的网络密码
+const char *ssid = "elecrow888"; //Your network name
+const char *password = "elecrow2014"; //Your network password
 char buf[100] = {};
 int bufindex = 0;
 int wifi_close_flag = 0;
@@ -54,17 +54,17 @@ U8G2_SSD1306_128X32_UNIVISION_F_SW_I2C  u8g2(U8G2_R0, /* clock=*/ 38, /* data=*/
 #define I2S_LRC       19
 #define BUTTON_PIN    38
 
-bool connected_state = false;   //创建设备连接标识符
+bool connected_state = false;   //Creating a Device Connection Identifier
 
-class MyServerCallbacks: public BLEServerCallbacks  //创建连接和断开调用类
+class MyServerCallbacks: public BLEServerCallbacks  //Create connect and disconnect calling classes
 {
-    void onConnect(BLEServer *pServer)//开始连接函数
+    void onConnect(BLEServer *pServer)//Start connection function
     {
-      connected_state = true;   //设备正确连接
+      connected_state = true;   //Equipment is properly connected
     }
-    void onDisconnect(BLEServer *pServer)//断开连接函数
+    void onDisconnect(BLEServer *pServer)//Disconnect Function
     {
-      connected_state = false;  //设备连接错误
+      connected_state = false;  //Device connection error
     }
 
 };
@@ -104,11 +104,11 @@ extern lv_obj_t * ui_MENU;
 extern lv_obj_t * ui_TOUCH;
 extern lv_obj_t * ui_JIAOZHUN;
 extern lv_obj_t * ui_Label2;
-extern lv_obj_t * ui_touch_calibrate;//校准界面
-static lv_obj_t * ui_Label;//TOUCH界面label
-static lv_obj_t * ui_Label3;//TOUCH界面label3
-static lv_obj_t * ui_Labe2;//Menu界面进度条label
-static lv_obj_t * bar;//Menu界面进度条
+extern lv_obj_t * ui_touch_calibrate;//calibration widget
+static lv_obj_t * ui_Label;//TOUCH interface label
+static lv_obj_t * ui_Label3;//TOUCH interface label3
+static lv_obj_t * ui_Labe2;//Menu interface progress bar label
+static lv_obj_t * bar;//Menu interface progress bar
 
 SPIClass& spi = SPI;
 uint16_t touchCalibration_x0 = 300, touchCalibration_x1 = 3600, touchCalibration_y0 = 300, touchCalibration_y1 = 3600;
@@ -217,8 +217,8 @@ void callback1()  //Callback function
       lv_label_set_text(ui_Labe2, "Loading");
       delay(150);
       val = 100;
-      bar_flag = 0; //停止进度条标志
-      goto_widget_flag = 1; //进入widget标志
+      bar_flag = 0; //Stop progress bar sign
+      goto_widget_flag = 1; //Widget Enter logo
 
     }
   }
@@ -226,11 +226,11 @@ void callback1()  //Callback function
 
 void setup()
 {
-  Serial.begin( 9600 ); /*初始化串口*/
-  cardSerial.begin(SERIAL_BAUD, SERIAL_8N1, 18, 17);//4.3 /*初始化串口1*/
+  Serial.begin( 9600 ); /*Serial Port Initializing */
+  cardSerial.begin(SERIAL_BAUD, SERIAL_8N1, 18, 17);//4.3 /*Serial Port Initializing 1*/
   first_flag = 0;
 
-  //IO口引脚
+  //IO Port Pins
   pinMode(20, OUTPUT);
   digitalWrite(20, LOW);
   pinMode(19, OUTPUT);
@@ -242,16 +242,16 @@ void setup()
   pinMode(0, OUTPUT);//TOUCH-CS
 
   //BLE
-  BLEDevice::init(bleServerName);  //创建BLE并设置名称
-  pServer = BLEDevice::createServer();  //创建BLE服务器
-  pServer->setCallbacks(new MyServerCallbacks());  //设置连接和断开调用类
-  pService = pServer->createService(SERVICE_UUID); //创建BLE服务
+  BLEDevice::init(bleServerName);  //Create BLE and set the name
+  pServer = BLEDevice::createServer();  //Creating a BLE server
+  pServer->setCallbacks(new MyServerCallbacks());  //Setting up the connect and disconnect calling classes
+  pService = pServer->createService(SERVICE_UUID); //Creating BLE service
 
   pCharacteristic = pService->createCharacteristic(  //Create ble feature（Characterristic_UUID）
                       CHARACTERISTIC_UUID,
                       BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY);
   pCharacteristic->setValue("ELECROW");
-  //开始广播
+  //start broadcasting
   pAdvertising = BLEDevice::getAdvertising();  //A bleadvertising class pointer padvertising is defined, which points to bledevice:: getadvertising()
   pAdvertising->addServiceUUID(SERVICE_UUID);
 
@@ -269,7 +269,7 @@ void setup()
   //    } while ( u8g2.nextPage() );
   //  }
 
-  //lvgl初始化
+  //lvgl initialization
   lv_init();
 
   // Init Display
@@ -287,7 +287,7 @@ void setup()
   //  delay(500);
 
 
-  //触摸初始化
+  //touch initialization
   touch_init();
   setTouch(calData);
   screenWidth = lcd->width();
@@ -315,10 +315,10 @@ void setup()
   pinMode(TFT_BL, OUTPUT);
   digitalWrite(TFT_BL, HIGH);
 #endif
-  ui_init();//开机UI界面
+  ui_init();//Boot UI
   while (1)
   {
-    if (goto_widget_flag == 1)//进入widget
+    if (goto_widget_flag == 1)//Go to widget
     {
       if (ticker1.active() == true)
       {
@@ -329,9 +329,9 @@ void setup()
       break;
     }
 
-    if (goto_widget_flag == 3)//进入触摸界面，先把进度条线程关闭
+    if (goto_widget_flag == 3)//Go to the touch screen and close the progress bar thread first
     {
-      bar_flag = 0; //停止进度条标志
+      bar_flag = 0; //Stop progress bar sign
       if (ticker1.active() == true)
       {
         ticker1.detach();
@@ -348,37 +348,37 @@ void setup()
         zero_clean = 0;
       }
       lv_label_set_text(ui_Label, "Touch Adjust:");
-      lv_label_set_text_fmt(ui_Label3, "%d  %d", touch_last_x, touch_last_y); //显示触摸信息
+      lv_label_set_text_fmt(ui_Label3, "%d  %d", touch_last_x, touch_last_y); //Display touch information
     }
 
-    if (goto_widget_flag == 4)//触摸界面返回到Menu界面,使进度条清零重启
+    if (goto_widget_flag == 4)//Touch the interface to return to the Menu interface, so that the progress bar zero restart
     {
       val = 100;
       delay(100);
-      ticker1.attach_ms(35, callback1);//每20ms调用callback1
+      ticker1.attach_ms(35, callback1);//Callback1 is called every 20ms.
       goto_widget_flag = 0;
     }
 
-    if (goto_widget_flag == 5) //触发校准信号
+    if (goto_widget_flag == 5) //Trigger calibration signal
     { 
       lv_scr_load_anim(ui_touch_calibrate, LV_SCR_LOAD_ANIM_NONE, 0, 0, false);
       lv_timer_handler();
       lv_timer_handler();
       delay(100);
-      touch_calibrate();//触摸校准
+      touch_calibrate();//Touch Calibration
       lv_scr_load_anim(ui_TOUCH, LV_SCR_LOAD_ANIM_NONE, 0, 0, false);
       lv_timer_handler();
-      goto_widget_flag = 3; //进入触摸界面标志
+      goto_widget_flag = 3; //Access to the touch screen logo
       touch_last_x = 0;
       touch_last_y = 0;
     }
 
-    if (bar_flag == 6)//刚开机进入Menu界面时运行进度条一次，之后就不再运行
+    if (bar_flag == 6)//Runs the progress bar once when you first boot into the Menu screen, then stops running after that
     {
       if (first_flag == 0)
       {
         lv_example_bar();
-        ticker1.attach_ms(35, callback1);//每20ms调用callback1
+        ticker1.attach_ms(35, callback1);//Callback1 is called every 20ms.
         first_flag = 1;
       }
     }
@@ -388,7 +388,7 @@ void setup()
 
 
   lcd->fillScreen(BLACK);
-  lv_demo_widgets();//主UI界面
+  lv_demo_widgets();//Main UI
 //  lv_demo_music();
   Serial.println( "Setup done" );
 }
@@ -404,22 +404,22 @@ void loop()
       NO_Test_Flag = 1;
       Test_Flag = 1;
       lcd->fillScreen(BLACK);
-      Serial.println("进入测试程序");
+      Serial.println("Access to the test program");
       WiFi.disconnect();
       break;
     }
   }
 
-  //*********************************测试程序***************************************
-  //*********************************测试程序***************************************
-  //*********************************测试程序***************************************
+  //*********************************Test Program***************************************
+  //*********************************Test Program***************************************
+  //*********************************Test Program***************************************
   while (Test_Flag == 1)
   {
     Ce_shi();
   }
 }
 
-//触摸Label控件
+//Touch Label Controls
 void label_xy()
 {
   ui_Label = lv_label_create(ui_TOUCH);
@@ -446,7 +446,7 @@ void label_xy()
 }
 
 
-//进度条控件
+//Progress bar control
 void lv_example_bar(void)
 {
   //////////////////////////////
@@ -463,7 +463,7 @@ void lv_example_bar(void)
   lv_obj_set_style_outline_color(bar, lv_color_hex(0x2D8812), LV_PART_INDICATOR | LV_STATE_DEFAULT);
   lv_obj_set_style_outline_opa(bar, 255, LV_PART_INDICATOR | LV_STATE_DEFAULT);
   //////////////////////
-  ui_Labe2 = lv_label_create(bar);//创建标签
+  ui_Labe2 = lv_label_create(bar);//Creating Tags
   lv_obj_set_style_text_color(ui_Labe2, lv_color_hex(0x09BEFB), LV_STATE_DEFAULT);
   lv_label_set_text(ui_Labe2, "0%");
   lv_obj_center(ui_Labe2);
@@ -677,13 +677,13 @@ void calibrateTouch(uint16_t *parameters, uint32_t color_fg, uint32_t color_bg, 
   }
 }
 
-void touch_calibrate()//屏幕校准
+void touch_calibrate()//screen calibration
 {
   uint16_t calData[5];
   uint8_t calDataOK = 0;
-  Serial.println("屏幕校准");
+  Serial.println("screen calibration");
   
-  //校准
+  //calibration
   //  lcd->fillScreen(BLACK);
   //  lcd->setCursor(20, 0);
   //  Serial.println("setCursor");
@@ -693,8 +693,8 @@ void touch_calibrate()//屏幕校准
   //  Serial.println("setTextSize");
   //  lcd->setTextColor(TFT_WHITE, TFT_BLACK);
 
-  //  lcd->println("按指示触摸角落");
-  Serial.println("按指示触摸角落");
+  //  lcd->println("Touch corners as directed");
+  Serial.println("Touch corners as directed");
   //  lcd->setTextFont(1);
   //  lcd->println();
   //  lcd->setCursor(175, 100);
@@ -707,7 +707,7 @@ void touch_calibrate()//屏幕校准
   calibrateTouch(calData, MAGENTA, BLACK, 15);
   Serial.println("calibrateTouch(calData, TFT_MAGENTA, TFT_BLACK, 15)");
   Serial.println(); Serial.println();
-  Serial.println("//在setup()中使用此校准代码:");
+  Serial.println("// Use this calibration code in setup().");
   Serial.print("uint16_t calData[5] = ");
   Serial.print("{ ");
 
@@ -750,9 +750,9 @@ void Ce_shi() {
   switch (serialData) {
     case 'R':
       Close_Flag = 1;
-      //      WiFi.disconnect();//断开连接
+      //      WiFi.disconnect();//Disconnect
       lcd->fillScreen(BLACK);
-      Serial.println("红屏");
+      Serial.println("Red Screen");
       while (Close_Flag == 1)
       {
         lcd->fillScreen(RED);
@@ -761,7 +761,7 @@ void Ce_shi() {
         {
           Close_Flag = 0;
           lcd->fillScreen(BLACK);
-          Serial.println("退出红屏");
+          Serial.println("Exit Red Screen");
           break;
         }
       }
@@ -770,7 +770,7 @@ void Ce_shi() {
     case 'G':
       Close_Flag = 1;
       lcd->fillScreen(BLACK);
-      Serial.println("绿屏");
+      Serial.println("green screen");
       while (Close_Flag == 1)
       {
         lcd->fillScreen(GREEN);
@@ -779,7 +779,7 @@ void Ce_shi() {
         {
           Close_Flag = 0;
           lcd->fillScreen(BLACK);
-          Serial.println("退出绿屏");
+          Serial.println("Exit green screen");
           break;
         }
       }
@@ -788,7 +788,7 @@ void Ce_shi() {
     case 'B':
       Close_Flag = 1;
       lcd->fillScreen(BLACK);
-      Serial.println("蓝屏");
+      Serial.println("Blue Screen");
       while (Close_Flag == 1)
       {
         lcd->fillScreen(BLUE);
@@ -797,7 +797,7 @@ void Ce_shi() {
         {
           Close_Flag = 0;
           lcd->fillScreen(BLACK);
-          Serial.println("退出蓝屏");
+          Serial.println("Exit Blue Screen");
           break;
         }
       }
@@ -806,7 +806,7 @@ void Ce_shi() {
     case 'S':
       Close_Flag = 1;
       lcd->fillScreen(BLACK);
-      Serial.println("TF卡初始化");
+      Serial.println("TF Card initialization");
       SPI.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
       SD_init();
       while (Close_Flag == 1)
@@ -816,7 +816,7 @@ void Ce_shi() {
         {
           Close_Flag = 0;
           lcd->fillScreen(BLACK);
-          Serial.println("退出TF卡初始化");
+          Serial.println("Exit TF Card initialization");
           break;
         }
       }
@@ -825,7 +825,7 @@ void Ce_shi() {
     case 'T':
       Close_Flag = 1;
       lcd->fillScreen(BLACK);
-      Serial.println("触摸屏");
+      Serial.println("touch screens");
       touch_flag = 0;
       delay(100);
       lcd->setCursor(70, 70);
@@ -934,7 +934,7 @@ void Ce_shi() {
         {
           Close_Flag = 0;
           lcd->fillScreen(BLACK);
-          Serial.println("退出触摸屏");
+          Serial.println("Exit touch screens");
           break;
         }
       }
@@ -942,7 +942,7 @@ void Ce_shi() {
 
     case 'L':
       Close_Flag = 1;
-      Serial.println("IO口测试");
+      Serial.println("IO Port Test");
       lcd->fillScreen(BLACK);
       pinMode(38, OUTPUT);
       digitalWrite(38, LOW);
@@ -950,14 +950,14 @@ void Ce_shi() {
       lcd->printf("IO port output testing");
       while (Close_Flag == 1)
       {
-        digitalWrite(38, HIGH);//拉高电平开灯
+        digitalWrite(38, HIGH);//Pull high level to turn on the light
         CloseData = Serial.read();
         if (CloseData == 'I')  //Exit
         {
           Close_Flag = 0;
           digitalWrite(38, LOW);
           lcd->fillScreen(BLACK);
-          Serial.println("退出IO口测试");
+          Serial.println("Exit IO Port Test");
           break;
         }
       }
@@ -989,7 +989,7 @@ void Ce_shi() {
         {
           Close_Flag = 0;
           lcd->fillScreen(BLACK);
-          Serial.println("退出IIC");
+          Serial.println("Exit IIC");
           break;
         }
       }
@@ -1073,7 +1073,7 @@ void Ce_shi() {
 
     case 'U':
       Close_Flag = 1;
-      Serial.println("打开UART1");
+      Serial.println("Open UART1");
       lcd->fillScreen(BLACK);
       lcd->setCursor(100, 120);
       lcd->printf("UART1 testing");
@@ -1097,16 +1097,16 @@ void Ce_shi() {
         }
         if (Serial.available())            // if data is available on hardwareserial port ==> data is comming from PC or notebook
           cardSerial.write(Serial.read());       // write it to the SoftSerial shield
-        //        //  如果硬件串口有数据
+        //        //  If the hardware serial port has data
         //        if (Serial.available())
         //        {
-        //          //从硬件串口读出一字节，写入软件串口
+        //          //Read a byte from the hardware serial port and write it to the software serial port
         //          cardSerial.write(Serial.read());
         //        }
-        //        //如果软件串口有数据
+        //        //If the software serial port has data
         //        if (cardSerial.available())
         //        {
-        //          //从软件串口读出一字节，写入硬件串口
+        //          //Read a byte from the software serial port and write it to the hardware serial port
         //          Serial.write(cardSerial.read());
         //        }
         CloseData = Serial.read();
@@ -1114,7 +1114,7 @@ void Ce_shi() {
         {
           Close_Flag = 0;
           lcd->fillScreen(BLACK);
-          Serial.println("关闭UART1");
+          Serial.println("Close UART1");
           break;
         }
       }
@@ -1122,7 +1122,7 @@ void Ce_shi() {
 
     case 'P':
       Close_Flag = 1;
-      Serial.println("打开SPEAK");
+      Serial.println("Open SPEAK");
       lcd->fillScreen(BLACK);
       lcd->setCursor(100, 120);
       lcd->printf("SPEAK testing");
@@ -1145,7 +1145,7 @@ void Ce_shi() {
           delay(50);
           Close_Flag = 0;
           lcd->fillScreen(BLACK);
-          Serial.println("关闭SPEAK");
+          Serial.println("Close SPEAK");
           break;
         }
       }
@@ -1159,7 +1159,7 @@ void Ce_shi() {
       lcd->fillScreen(BLACK);
       while (Close_Flag == 1)
       {
-        if (connected_state == true) //有设备连接
+        if (connected_state == true) //equipped with a connection
         {
           lcd->fillScreen(BLACK);
           lcd->setCursor(20, 120);
@@ -1176,7 +1176,7 @@ void Ce_shi() {
         if (CloseData == 'I')  //Exit
         {
           Close_Flag = 0;
-          pAdvertising->stop();  //停止广播
+          pAdvertising->stop();  //stop broadcasting
           pService->stop();
           delay(50);
           lcd->fillScreen(BLACK);
@@ -1186,7 +1186,7 @@ void Ce_shi() {
       }
       break;
 
-    //Exit软件测试程序
+    //Exit Software Test Program
     case 'C':
       WiFi.disconnect();
       NO_Test_Flag = 0;
@@ -1200,7 +1200,7 @@ void Ce_shi() {
 }
 
 
-//SD卡初始化
+//SD Cardinitialization
 int SD_init()
 {
 
@@ -1236,7 +1236,7 @@ int SD_init()
   return 0;
 }
 
-//遍历SD卡目录
+//Traversing the SD Card Catalog
 void listDir(fs::FS & fs, const char *dirname, uint8_t levels)
 {
   //  Serial.printf("Listing directory: %s\n", dirname);

@@ -36,7 +36,7 @@ void setup()
   Serial.begin(9600);
   Serial.println("Hello World!");
 
-  //IO口引脚
+  //IO Port Pins
   pinMode(38, OUTPUT);
   digitalWrite(38, LOW);
   pinMode(17, OUTPUT);

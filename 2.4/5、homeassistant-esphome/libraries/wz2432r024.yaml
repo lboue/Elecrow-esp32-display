@@ -51,14 +51,14 @@ switch:
     id: led24
     pin: 25
     inverted: no
-    #初始化为off
+    #initialization为off
     restore_mode: ALWAYS_OFF
   - platform: gpio
     name: "bck"
     id: bck24
     pin: 27
     inverted: no
-    #初始化为off
+    #initialization为off
     restore_mode: ALWAYS_ON
 
 i2c:

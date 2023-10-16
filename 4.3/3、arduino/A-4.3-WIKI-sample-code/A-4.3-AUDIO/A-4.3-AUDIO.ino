@@ -10,11 +10,11 @@ int music_id = 1818615872;
 #define I2S_LRC       19
 #define BUTTON_PIN    38
 
-const char *ssid = "elecrow888"; //你的网络名称
-const char *password = "elecrow2014"; //你的网络密码
+const char *ssid = "elecrow888"; //Your network name
+const char *password = "elecrow2014"; //Your network password
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin( 9600 ); /*初始化串口*/
+  Serial.begin( 9600 ); /*Serial Port Initializing */
   WiFi.begin(ssid, password);
   WiFi.setAutoReconnect(true);
   delay(100);
@@ -27,7 +27,7 @@ void setup() {
   audio.setVolume(21); // 0...21
   pinMode(BUTTON_PIN, INPUT);
   music_url = "https://music.163.com/song/media/outer/url?id=" + String(music_id) + ".mp3";
-  audio.connecttohost(music_url.c_str()); //  网易 1818615845
+  audio.connecttohost(music_url.c_str()); 
 }
 
 void loop() {
@@ -38,14 +38,14 @@ void loop() {
     delay(5);
     if (digitalRead(BUTTON_PIN) == HIGH)
     {
-      Serial.println("获取信息...");
+      Serial.println("Access to information...");
       audio.stopSong();
       music_id = music_id + 1;
       music_url = "https://music.163.com/song/media/outer/url?id=" + String(music_id) + ".mp3";
-      audio.connecttohost(music_url.c_str()); //  网易 1818615845
+      audio.connecttohost(music_url.c_str()); 
       Serial.println(music_url);
       while (digitalRead(BUTTON_PIN) == HIGH);      
-      Serial.println("开始播放...");
+      Serial.println("start playing...");
     }
   }
 }

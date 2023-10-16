@@ -1,5 +1,5 @@
 #define SERIAL_BAUD 9600
-HardwareSerial cardSerial(1);//声明串口1
+HardwareSerial cardSerial(1);//Declare serial port 1
 unsigned char buffer[256]; // buffer array for data recieve over serial port
 int count_1 = 0;   // counter for buffer array
 void clearBufferArray()              // function to clear buffer array
@@ -12,8 +12,8 @@ void clearBufferArray()              // function to clear buffer array
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin( 9600 ); /*初始化串口*/
-  cardSerial.begin(SERIAL_BAUD, SERIAL_8N1, 18, 17);//4.3 /*初始化串口1*/18-RX\17-TX
+  Serial.begin( 9600 ); /*Serial Port Initializing */
+  cardSerial.begin(SERIAL_BAUD, SERIAL_8N1, 18, 17);//4.3 /*Serial Port Initializing 1*/18-RX\17-TX
 }
 
 void loop() {

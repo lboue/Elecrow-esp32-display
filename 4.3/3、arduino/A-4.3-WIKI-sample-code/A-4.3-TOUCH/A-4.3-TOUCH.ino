@@ -2,7 +2,7 @@
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin( 9600 ); /*初始化串口*/
+  Serial.begin( 9600 ); /*Serial Port Initializing */
   touch_init();
 }
 
