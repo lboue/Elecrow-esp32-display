@@ -31,7 +31,7 @@ lv_obj_t * ui_Label2;
 // void ui_event_jiaozhun4(lv_event_t * e);
 // lv_obj_t * ui_jiaozhun4;
 
-lv_obj_t * ui_touch_calibrate;//校准界面
+lv_obj_t * ui_touch_calibrate;//calibration widget
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
     #error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
@@ -158,7 +158,7 @@ void ui_BEGIN_screen_init(void)
     lv_obj_clear_flag(ui_BEGIN, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_bg_color(ui_BEGIN, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_BEGIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    //TOP照片
+    //TOP picture
     ui_toppic = lv_img_create(ui_BEGIN);
     lv_img_set_src(ui_toppic, &ui_img_wizee_logo_03_160x40_png);
     lv_obj_set_width(ui_toppic, LV_SIZE_CONTENT);   /// 1
@@ -176,7 +176,7 @@ void ui_BEGIN_screen_init(void)
     lv_anim_set_exec_cb(&a, anim_y_cb);
     lv_anim_set_path_cb(&a, lv_anim_path_linear);
     lv_anim_start(&a);
-    //DOWM照片
+    //DOWM picture
     ui_dowmpic = lv_img_create(ui_BEGIN);
     lv_img_set_src(ui_dowmpic, &ui_img_1614482188);
     lv_obj_set_width(ui_dowmpic, LV_SIZE_CONTENT);   /// 1
@@ -185,7 +185,7 @@ void ui_BEGIN_screen_init(void)
     lv_obj_set_pos(ui_dowmpic, 295, 250);
     lv_obj_add_flag(ui_dowmpic, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_dowmpic, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    //DOWMBLACK照片
+    //DOWMBLACK picture
     // ui_dowmblack = lv_img_create(ui_BEGIN);
     // lv_img_set_src(ui_dowmblack, &ui_img_1952369156);
     // lv_obj_set_width(ui_dowmblack, LV_SIZE_CONTENT);   /// 1
@@ -233,7 +233,7 @@ void ui_MENU_screen_init(void)
     lv_obj_clear_flag(ui_touch, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_img_set_zoom(ui_touch, 300);
 
-    //进度条
+    //progress bar
     // ui_Bar = lv_bar_create(ui_MENU);   
     // lv_obj_add_event_cb(ui_Bar,bar_event_cb,LV_EVENT_VALUE_CHANGED,NULL);//添加回调事件
     // // lv_bar_set_value(ui_Bar, 100, LV_ANIM_ON);
@@ -252,12 +252,12 @@ void ui_MENU_screen_init(void)
     // lv_obj_set_style_outline_opa(ui_Bar, 255, LV_PART_INDICATOR | LV_STATE_DEFAULT);
 
       
-    // lv_anim_t c;                                          //创建动画对象
-    // lv_anim_init(&c);                                     //初始化动画
-    // lv_anim_set_var(&c,ui_Bar);                              //设置动画对象
-    // lv_anim_set_values(&c,0,100);                         //设置动画值
-    // lv_anim_set_exec_cb(&c,bar_set_value);                //设置回调
-    // lv_anim_set_time(&c,3000);                            //设置时间
+    // lv_anim_t c;                                          //Creating Animated Objects
+    // lv_anim_init(&c);                                     //initialization anime
+    // lv_anim_set_var(&c,ui_Bar);                              //Setting the animation object
+    // lv_anim_set_values(&c,0,100);                         //Setting the animation value
+    // lv_anim_set_exec_cb(&c,bar_set_value);                //Setting Callbacks
+    // lv_anim_set_time(&c,3000);                            //setup time
     // lv_anim_start(&c);
 
     lv_obj_add_event_cb(ui_MENU, ui_event_MEUN, LV_EVENT_ALL, NULL);
@@ -304,7 +304,7 @@ void ui_ui_touch_calibrate_screen_init(void)
   lv_obj_set_style_bg_color(ui_touch_calibrate, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_touch_calibrate, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-  ui_Label2 = lv_label_create(ui_touch_calibrate);//创建ui_Label2
+  ui_Label2 = lv_label_create(ui_touch_calibrate);//create ui_Label2
   lv_obj_set_width(ui_Label2, LV_SIZE_CONTENT);   /// 1
   lv_obj_set_height(ui_Label2, LV_SIZE_CONTENT);    /// 1
   lv_obj_set_x(ui_Label2, 0);

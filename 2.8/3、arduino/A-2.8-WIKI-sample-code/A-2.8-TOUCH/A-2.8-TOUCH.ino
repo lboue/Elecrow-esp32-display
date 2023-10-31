@@ -1,20 +1,20 @@
 #include <TFT_eSPI.h>
-TFT_eSPI lcd = TFT_eSPI(); /* TFT实例 */
+TFT_eSPI lcd = TFT_eSPI(); /* TFT Example */
 uint16_t touchX, touchY;
 uint16_t calData[5] = { 189, 3416, 359, 3439, 1 };
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin( 9600 ); /*初始化串口*/
-  //LCD初始化
+  Serial.begin( 9600 ); /*Serial Port Initializing */
+  //LCD initialization
   lcd.begin(); 
-  lcd.setRotation(1); /* 旋转 */
-  //校准模式。一是四角定位、二是直接输入模拟数值直接定位
-  //屏幕校准
+  lcd.setRotation(1); /* revolve */
+  //Calibration modes. One is four-corner positioning, and the other is direct input of analog values for direct positioning.
+  //screen calibration
 //  touch_calibrate();
   lcd.setTouch(calData);
 
-  /*初始化*/
+  /*initialization*/
 }
 
 void loop() {
@@ -30,20 +30,20 @@ void loop() {
   }
 }
 
-void touch_calibrate()//屏幕校准
+void touch_calibrate()//screen calibration
 {
   uint16_t calData[5];
   uint8_t calDataOK = 0;
-  Serial.println("屏幕校准");
+  Serial.println("screen calibration");
 
-  //校准
-  Serial.println("按指示触摸角落");
+  //calibration
+  Serial.println("Touch corners as directed");
 
   lv_timer_handler();
   lcd.calibrateTouch(calData, TFT_MAGENTA, TFT_BLACK, 15);
   Serial.println("calibrateTouch(calData, TFT_MAGENTA, TFT_BLACK, 15)");
   Serial.println(); Serial.println();
-  Serial.println("//在setup()中使用此校准代码:");
+  Serial.println("// Use this calibration code in setup().");
   Serial.print("uint16_t calData[5] = ");
   Serial.print("{ ");
 

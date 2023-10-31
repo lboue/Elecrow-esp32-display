@@ -21,7 +21,7 @@ XT_Sequence_Class Sequence;                // The sequence object, you add your 
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin( 9600 ); /*初始化串口*/
+  Serial.begin( 9600 ); /*Serial Port Initializing */
   Sequence.AddPlayItem(&ForceWithYou);      // Add the first sound item, this will play first
   Sequence.AddPlayItem(&Music);             // Add the music score, this will play after the first item
   DacAudio.Play(&Sequence);                 // Play the sequence, will play just the once and then stop
@@ -29,6 +29,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  DacAudio.FillBuffer();//播放
-  //  DacAudio.StopAllSounds(); //停止播放
+  DacAudio.FillBuffer();//play
+  //  DacAudio.StopAllSounds(); //Stop playing
 }

@@ -136,7 +136,7 @@ void setup() {
 //  delay(2000);
 //  lcd->fillScreen(BLACK);
 //  delay(2000);
-//  ui_init();//开机UI界面
+//  ui_init();//Boot UI
 //  lv_timer_handler();
 //  delay(3000);
 //  lcd->fillScreen(BLACK);

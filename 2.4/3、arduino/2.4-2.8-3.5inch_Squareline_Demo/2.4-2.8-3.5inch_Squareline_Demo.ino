@@ -3,14 +3,13 @@
 #include <SPI.h>
 
 #define USE_UI          //if you want to use the ui export from Squareline ,pleease define USE_UI.
-#define Display_24        //acording to the board you using ,if you using the ESP32 Display 3.5inch board, please define 'Display_35'.if using 2.4inch board,please define 'Display_24'.
+#define Display_24        //according to the board you using ,if you using the ESP32 Display 3.5inch board, please define 'Display_35'.if using 2.4inch board,please define 'Display_24'.
 
 #ifdef USE_UI
 #include <lvgl.h>
 #include "ui.h"
 #endif
 
-#ifdef USE_UI
 #if defined Display_35      //ESP32 Display 3.5inch Board
 /*screen resolution*/
 static const uint16_t screenWidth  = 480;
@@ -26,7 +25,6 @@ uint16_t calData[5] = { 557, 3263, 369, 3493, 3  };
 static const uint16_t screenWidth  = 320;
 static const uint16_t screenHeight = 240;
 uint16_t calData[5] = { 189, 3416, 359, 3439, 1 };
-#endif
 #endif
 
 

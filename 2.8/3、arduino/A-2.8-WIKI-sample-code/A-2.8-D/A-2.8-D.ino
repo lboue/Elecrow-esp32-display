@@ -8,8 +8,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  digitalWrite(D_PIN, HIGH);//拉高电平
+  digitalWrite(D_PIN, HIGH);//pull high level
   delay(500);
-  digitalWrite(D_PIN, LOW);//拉低电平
+  digitalWrite(D_PIN, LOW);//pull low level
   delay(500);
 }

@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <SPI.h>
 
-#define USE_UI    //if you want to use the ui export from Squareline or GUIGuider, please do not annotate this line.
+#define USE_UI    //if you want to use the ui export from Squareline, please do not annotate this line.
 
 #if defined USE_UI
 #include <lvgl.h>
@@ -132,7 +132,7 @@ void setup()
   Serial.println("LVGL Widgets Demo");
 
 #if defined(Display_50) || defined(Display_70)
-  //IO口引脚
+  //IO Port Pins
   pinMode(38, OUTPUT);
   digitalWrite(38, LOW);
   pinMode(17, OUTPUT);

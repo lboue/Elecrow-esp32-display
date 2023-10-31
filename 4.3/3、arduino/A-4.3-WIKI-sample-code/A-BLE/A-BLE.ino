@@ -1,28 +1,28 @@
-#include "BLEDevice.h"              //BLE驱动库
-#include "BLEServer.h"              //BLE蓝牙服务器库
-#include "BLEUtils.h"               //BLE实用程序库
-#include "BLE2902.h"                //特征添加描述符库
-#include <BLECharacteristic.h>      //BLE特征函数库
+#include "BLEDevice.h"              //BLE Driver Library
+#include "BLEServer.h"              //BLE Bluetooth Server Library
+#include "BLEUtils.h"               //BLE Utility Library
+#include "BLE2902.h"                //Feature Addition Descriptor Library
+#include <BLECharacteristic.h>      //BLE Feature Function Library
 BLEAdvertising* pAdvertising = NULL;
 BLEServer* pServer = NULL;
 BLEService *pService = NULL;
 BLECharacteristic* pCharacteristic = NULL;
-#define bleServerName "ESP32SPI-BLE"  //BLE服务器的名称
-#define SERVICE_UUID "6479571c-2e6d-4b34-abe9-c35116712345"  //服务的UUID
+#define bleServerName "ESP32SPI-BLE"  //Name of the BLE server
+#define SERVICE_UUID "6479571c-2e6d-4b34-abe9-c35116712345"  //UUID of the service
 #define CHARACTERISTIC_UUID "826f072d-f87c-4ae6-a416-6ffdcaa02d73"
 
 
-bool connected_state = false;   //创建设备连接标识符
+bool connected_state = false;   //Creating a Device Connection Identifier
 
-class MyServerCallbacks: public BLEServerCallbacks  //创建连接和断开调用类
+class MyServerCallbacks: public BLEServerCallbacks  //Create connect and disconnect calling classes
 {
-    void onConnect(BLEServer *pServer)//开始连接函数
+    void onConnect(BLEServer *pServer)//Start connection function
     {
-      connected_state = true;   //设备正确连接
+      connected_state = true;   //Equipment is properly connected
     }
-    void onDisconnect(BLEServer *pServer)//断开连接函数
+    void onDisconnect(BLEServer *pServer)//Disconnect Function
     {
-      connected_state = false;  //设备连接错误
+      connected_state = false;  //Device connection error
     }
 
 };
@@ -30,22 +30,22 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   //BLE
-  BLEDevice::init(bleServerName);  //创建BLE并设置名称
-  pServer = BLEDevice::createServer();  //创建BLE服务器
-  pServer->setCallbacks(new MyServerCallbacks());  //设置连接和断开调用类
-  pService = pServer->createService(SERVICE_UUID); //创建BLE服务
+  BLEDevice::init(bleServerName);  //Create BLE and set the name
+  pServer = BLEDevice::createServer();  //Creating a BLE server
+  pServer->setCallbacks(new MyServerCallbacks());  //Setting up the connect and disconnect calling classes
+  pService = pServer->createService(SERVICE_UUID); //Creating BLE service
 
   pCharacteristic = pService->createCharacteristic(  //Create ble feature（Characterristic_UUID）
                       CHARACTERISTIC_UUID,
                       BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY);
   pCharacteristic->setValue("ELECROW");
-  //开始广播
+  //start broadcasting
   pAdvertising = BLEDevice::getAdvertising();  //A bleadvertising class pointer padvertising is defined, which points to bledevice:: getadvertising()
   pAdvertising->addServiceUUID(SERVICE_UUID);
   pAdvertising->start();  //Start broadcasting
   pService->start();
-  //  pAdvertising->stop();  //停止广播
-  //  pService->stop();      //停止服务
+  //  pAdvertising->stop();  //stop broadcasting
+  //  pService->stop();      //Discontinuation of services
 }
 
 void loop() {

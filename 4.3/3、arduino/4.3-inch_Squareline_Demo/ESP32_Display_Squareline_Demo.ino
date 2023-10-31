@@ -1,9 +1,9 @@
 #include <Wire.h>
 #include <SPI.h>
 
-#define USE_UI    //if you want to use the ui export from Squareline or GUIGuider, please do not annotate this line.
+//#define USE_UI    //if you want to use the ui export from Squareline, please do not annotate this line.
 
-#ifdef USE_UI
+#if defined USE_UI
 #include <lvgl.h>
 #include "ui.h"
 #endif
@@ -13,8 +13,8 @@
 #define GFX_BL DF_GFX_BL // default backlight pin, you may replace DF_GFX_BL to actual backlight pin
 
 /******Please define a corresponding line based on your development board.************/
-//#define Display_43
-#define Display_50
+#define Display_43
+//#define Display_50
 //#define Display_70
 /*******************************************************************************
  * Screen Driver Configuration 
@@ -77,7 +77,7 @@ Arduino_RPi_DPI_RGBPanel *lcd = new Arduino_RPi_DPI_RGBPanel(
 static uint32_t screenWidth;
 static uint32_t screenHeight;
 static lv_disp_draw_buf_t draw_buf;
-static lv_color_t disp_draw_buf[800 * 480 / 10];      //5,7inch: lv_color_t disp_draw_buf[800*480/10]            4.3inch: lv_color_t disp_draw_buf[480*272/10]
+static lv_color_t disp_draw_buf[480 * 272 / 10];      //5,7inch: lv_color_t disp_draw_buf[800*480/10]            4.3inch: lv_color_t disp_draw_buf[480*272/10]
 //static lv_color_t disp_draw_buf;
 static lv_disp_drv_t disp_drv;
 
@@ -131,7 +131,8 @@ void setup()
   Serial.begin(9600);
   Serial.println("LVGL Widgets Demo");
 
-  //IO口引脚
+#if defined(Display_50) || defined(Display_70)
+  //IO Port Pins
   pinMode(38, OUTPUT);
   digitalWrite(38, LOW);
   pinMode(17, OUTPUT);
@@ -140,6 +141,17 @@ void setup()
   digitalWrite(18, LOW);
   pinMode(42, OUTPUT);
   digitalWrite(42, LOW);
+#elif defined(Display_43)
+  pinMode(20, OUTPUT);
+  digitalWrite(20, LOW);
+  pinMode(19, OUTPUT);
+  digitalWrite(19, LOW);
+  pinMode(35, OUTPUT);
+  digitalWrite(35, LOW);
+  pinMode(38, OUTPUT);
+  digitalWrite(38, LOW);
+  pinMode(0, OUTPUT);//TOUCH-CS
+#endif
 
   // Init Display
   lcd->begin();

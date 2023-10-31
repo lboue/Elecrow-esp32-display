@@ -10,8 +10,8 @@ void clearBufferArray()              // function to clear buffer array
 }
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin( 9600 ); /*初始化串口*/
-  Serial2.begin( 9600 ); /*初始化串口2*/
+  Serial.begin( 9600 ); /*Serial Port Initializing */
+  Serial2.begin( 9600 ); /*Serial Port Initializing 2*/
 }
 
 void loop() {

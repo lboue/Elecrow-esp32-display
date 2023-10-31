@@ -10,16 +10,16 @@
 #define SD_CS 10
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin( 9600 ); /*初始化串口*/
-  //SD卡
+  Serial.begin( 9600 ); /*Serial Port Initializing */
+  //SD Card
   SPI.begin(SD_SCK, SD_MISO, SD_MOSI);
   delay(100);
   if (SD_init() == 1)
   {
-    Serial.println("SD卡初始化失败！");
+    Serial.println("SD Cardinitialization failed！");
   }
   else
-    Serial.println("SD卡初始化成功");
+    Serial.println("SD Cardinitialization  successed");
 }
 
 void loop() {
@@ -27,7 +27,7 @@ void loop() {
 
 }
 
-//SD卡初始化
+//SD Cardinitialization
 int SD_init()
 {
 
@@ -63,7 +63,7 @@ int SD_init()
   return 0;
 }
 
-//遍历SD卡目录
+//Traversing the SD Card Catalog
 void listDir(fs::FS & fs, const char *dirname, uint8_t levels)
 {
   //  Serial.printf("Listing directory: %s\n", dirname);
