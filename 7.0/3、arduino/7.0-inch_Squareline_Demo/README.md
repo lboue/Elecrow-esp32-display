@@ -6,7 +6,7 @@ video link:
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/1.png?raw=true)
+![](https://raw.githubusercontent.com/Elecrow-RD/esp32-display/master/7.0/3%E3%80%81arduino/7.0-inch_Squareline_Demo/README/1.png)
 
 Please notice the tips inside the demo code,that is very important.
 
