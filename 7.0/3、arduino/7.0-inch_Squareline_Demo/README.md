@@ -8,6 +8,8 @@ video link:
 
 ![](https://raw.githubusercontent.com/Elecrow-RD/esp32-display/master/7.0/3%E3%80%81arduino/7.0-inch_Squareline_Demo/README/1.png)
 
+![](https://raw.githubusercontent.com/Elecrow-RD/esp32-display/master/7.0/3%E3%80%81arduino/7.0-inch_Squareline_Demo/README/2.png)
+
 Please notice the tips inside the demo code,that is very important.
 
 **If you don't want to use the UI export from Squareline Studio ,please del the UI file, and open the demo program again, then you can compile the program, or your program may happen some errors.**
@@ -16,7 +18,7 @@ Please notice the tips inside the demo code,that is very important.
 
 **And if you are using a 4.3-inch board, when configuring the compilation environment, you need to change "PSRAM" to "QSPI PSRAM" to ensure proper display. Go to Tools -> PSRAM -> QSPI PSRAM. For the 5.0-inch and 7.0-inch boards, follow the tutorial and select "OPI PSRAM" as instructed.**
 
-![](https://github.com/Elecrow-RD/esp32-display/blob/master/2.4/3%E3%80%81arduino/2.4-2.8-3.5inch_Squareline_Demo/README/2.png?raw=true)
+![](https://raw.githubusercontent.com/Elecrow-RD/esp32-display/master/7.0/3%E3%80%81arduino/7.0-inch_Squareline_Demo/README/3.png)
 
 
 
