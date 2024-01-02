@@ -13,8 +13,8 @@
 #define GFX_BL DF_GFX_BL // default backlight pin, you may replace DF_GFX_BL to actual backlight pin
 
 /******Please define a corresponding line based on your development board.************/
-#define Display_43
-//#define Display_50
+//#define Display_43
+#define Display_50
 //#define Display_70
 /*******************************************************************************
  * Screen Driver Configuration 
