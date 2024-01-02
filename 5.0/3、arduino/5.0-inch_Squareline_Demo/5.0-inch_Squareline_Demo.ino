@@ -77,7 +77,7 @@ Arduino_RPi_DPI_RGBPanel *lcd = new Arduino_RPi_DPI_RGBPanel(
 static uint32_t screenWidth;
 static uint32_t screenHeight;
 static lv_disp_draw_buf_t draw_buf;
-static lv_color_t disp_draw_buf[800 * 480 / 10];   notice here!!!   //5,7inch: lv_color_t disp_draw_buf[800*480/10]            4.3inch: lv_color_t disp_draw_buf[480*272/10]
+static lv_color_t disp_draw_buf[800 * 480 / 10];   //notice here!!!  5,7inch: lv_color_t disp_draw_buf[800*480/10]            4.3inch: lv_color_t disp_draw_buf[480*272/10]
 //static lv_color_t disp_draw_buf;
 static lv_disp_drv_t disp_drv;
 
