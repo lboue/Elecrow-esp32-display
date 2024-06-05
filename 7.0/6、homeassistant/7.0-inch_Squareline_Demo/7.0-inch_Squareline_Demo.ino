@@ -7,7 +7,7 @@ extern "C" {
 #include "freertos/timers.h"
 }
 #include <AsyncMqttClient.h>
-#include <Crowbits_DHT20.h>
+#include <DHT20.h>
 
 #define WIFI_SSID "yanfa_software"
 #define WIFI_PASSWORD "yanfa-123456"
@@ -28,7 +28,7 @@ extern "C" {
 #define mqtt_password  "elecrow2014"
 
 // Initialize DHT20 sensor
-Crowbits_DHT20 dht20;
+DHT20 dht20;
 int LED = 38;
 AsyncMqttClient mqttClient;
 TimerHandle_t mqttReconnectTimer;
