@@ -1,3 +1,10 @@
+/*
+  Librairies
+   Adafruit_GFX https://github.com/adafruit/Adafruit-GFX-Library
+   Adafruit_SSD1306 https://github.com/adafruit/Adafruit_SSD1306
+   Audio https://github.com/arduino-libraries/Audio
+   LovyanGFX https://github.com/lovyan03/LovyanGFX
+*/
 #include <lvgl.h>
 #include <demos/lv_demos.h>
 #include <examples/lv_examples.h>
