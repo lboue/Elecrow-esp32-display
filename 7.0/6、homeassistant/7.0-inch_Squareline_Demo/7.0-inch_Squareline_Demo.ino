@@ -4,6 +4,8 @@
     async-mqtt-client https://github.com/marvinroger/async-mqtt-client
     AsyncTCP https://github.com/dvarrel/AsyncTCP
     DHT20 https://github.com/RobTillaart/DHT20
+    LovyanGFX https://github.com/lovyan03/LovyanGFX)
+    TAMC_GT911 https://github.com/tamctec/gt911-arduino)
 */
 #include <Wire.h>
 #include <SPI.h>
