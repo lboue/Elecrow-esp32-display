@@ -1,7 +1,9 @@
 /* 
   You have to install Arduino librairies:
+    Arduino_GFX https://github.com/moononournation/Arduino_GFX
     async-mqtt-client https://github.com/marvinroger/async-mqtt-client
-    AsyncTCP https://github.com/dvarrel/AsyncTCP  
+    AsyncTCP https://github.com/dvarrel/AsyncTCP
+    DHT20 https://github.com/RobTillaart/DHT20
 */
 #include <Wire.h>
 #include <SPI.h>
