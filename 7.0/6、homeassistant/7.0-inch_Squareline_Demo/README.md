@@ -1,3 +1,18 @@
+# CrowPanel 7.0" Home Assistant Squareline Demo
+
+## Prerequisites
+* Select a new sketchbook directory
+* Copy libraries from Elecrow website
+* Copy the files named `ui*` from [this](/7.0/6%E3%80%81homeassistant/7.0-inch_Squareline_Demo) directory to the following child sub-folder in the sketchbook directory: ./libraries/UI
+
+Note that different projects for ESP32 display require different UI libraries. So you need to replace the UI files when you using different displays.
+
+## Build
+
+
+# OLD
+
+
 **If you are using this demo code for the first time, I suggest that you watch this video lesson first.**
 
 video link:
