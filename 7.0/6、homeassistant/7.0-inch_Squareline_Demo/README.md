@@ -8,6 +8,7 @@
     * [AsyncTCP](https://github.com/dvarrel/AsyncTCP)
     * [Arduino_GFX](https://github.com/moononournation/Arduino_GFX)
     * [LovyanGFX](https://github.com/lovyan03/LovyanGFX)
+    * [TAMC_GT911](https://github.com/tamctec/gt911-arduino)
 * Copy file `libraries/lvgl/lv_conf_template.h` to the sketchbook libraries directory `./libraries/lv_conf.h`
 * Copy the files named `ui*` from [this](/7.0/6%E3%80%81homeassistant/7.0-inch_Squareline_Demo) directory to the following child sub-folder in the sketchbook directory: ./libraries/UI
 
