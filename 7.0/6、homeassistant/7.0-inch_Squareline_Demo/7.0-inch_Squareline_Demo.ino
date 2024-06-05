@@ -1,3 +1,8 @@
+/* 
+  You have to install Arduino librairies:
+    async-mqtt-client https://github.com/marvinroger/async-mqtt-client
+    AsyncTCP https://github.com/dvarrel/AsyncTCP  
+*/
 #include <Wire.h>
 #include <SPI.h>
 #include <WiFi.h>
