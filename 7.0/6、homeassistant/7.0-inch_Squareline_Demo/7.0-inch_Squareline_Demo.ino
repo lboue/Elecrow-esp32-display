@@ -17,7 +17,7 @@ extern "C" {
 
 // For a cloud MQTT broker, type the domain name
 //#define MQTT_HOST "example.com"
-#define MQTT_PORT 1885
+#define MQTT_PORT 1883
 
 // Temperature MQTT Topics
 #define MQTT_PUB_LED_S  "esp32/led/state"
